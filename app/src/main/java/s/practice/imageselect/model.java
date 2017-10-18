@@ -1,12 +1,15 @@
 package s.practice.imageselect;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by dagou on 2017/10/17.
  */
 
-public class model {
+public class model  {
 
     /**
      * error : false
@@ -32,7 +35,7 @@ public class model {
         this.results = results;
     }
 
-    public static class ResultsBean {
+    public static class ResultsBean implements Parcelable {
         /**
          * _id : 59deaa0c421aa90fe7253583
          * createdAt : 2017-10-12T07:32:28.644Z
@@ -54,6 +57,30 @@ public class model {
         private String url;
         private boolean used;
         private String who;
+
+        protected ResultsBean(Parcel in) {
+            _id = in.readString();
+            createdAt = in.readString();
+            desc = in.readString();
+            publishedAt = in.readString();
+            source = in.readString();
+            type = in.readString();
+            url = in.readString();
+            used = in.readByte() != 0;
+            who = in.readString();
+        }
+
+        public static final Creator<ResultsBean> CREATOR = new Creator<ResultsBean>() {
+            @Override
+            public ResultsBean createFromParcel(Parcel in) {
+                return new ResultsBean(in);
+            }
+
+            @Override
+            public ResultsBean[] newArray(int size) {
+                return new ResultsBean[size];
+            }
+        };
 
         public String get_id() {
             return _id;
@@ -125,6 +152,24 @@ public class model {
 
         public void setWho(String who) {
             this.who = who;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(_id);
+            parcel.writeString(createdAt);
+            parcel.writeString(desc);
+            parcel.writeString(publishedAt);
+            parcel.writeString(source);
+            parcel.writeString(type);
+            parcel.writeString(url);
+            parcel.writeByte((byte) (used ? 1 : 0));
+            parcel.writeString(who);
         }
     }
 }
