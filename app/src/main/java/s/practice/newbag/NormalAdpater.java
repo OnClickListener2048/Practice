@@ -98,6 +98,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
                 bundle.putParcelableArrayList(EXTRA_ALL_DATA, allItemList);
                 bundle.putInt(EXTRA_CURRENT_POSITION, image.position);
                 intent.putExtra(EXTRA_BUNDLE, bundle);
+                mContext.startActivity(intent);
             }
         });
 

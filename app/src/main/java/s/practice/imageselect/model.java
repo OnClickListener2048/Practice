@@ -3,6 +3,7 @@ package s.practice.imageselect;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class model  {
      */
 
     private boolean error;
-    private List<ResultsBean> results;
+    private ArrayList<ResultsBean> results;
 
     public boolean isError() {
         return error;
@@ -27,11 +28,11 @@ public class model  {
         this.error = error;
     }
 
-    public List<ResultsBean> getResults() {
+    public ArrayList<ResultsBean> getResults() {
         return results;
     }
 
-    public void setResults(List<ResultsBean> results) {
+    public void setResults(ArrayList<ResultsBean> results) {
         this.results = results;
     }
 

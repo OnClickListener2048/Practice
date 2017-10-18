@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -50,8 +52,14 @@ public class PreviewImageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Image imageItem =  getArguments().getParcelable(FRAG_IMAGE);
+
+
         ImageViewTouch image = (ImageViewTouch) view.findViewById(R.id.image_view);
         image.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
+
+        Glide.with(getActivity()).load(imageItem.path).asBitmap().placeholder(R.mipmap.ic_launcher).into(image);
     }
 
     @Override

@@ -74,7 +74,7 @@ public class MyReceiptActivity extends AppCompatActivity implements NormalAdpate
         return mImageResize;
     }
 
-    private void setUpData(List<model.ResultsBean> body) {
+    private void setUpData(ArrayList<model.ResultsBean> body) {
         NormalAdpater normal = new NormalAdpater(body, getImageResize(this));
         normal.setOnImageSelectListener(this);
         recyclerview.setAdapter(normal);
