@@ -7,5 +7,15 @@ package s.practice.imageselect;
 public class Image {
    public String path;
     public  String name;
-    public  boolean isSelected;
+    public int position;
+    public  boolean isSelected = false;
+
+    @Override
+    public String toString() {
+        return "Image{" +
+                "path='" + path + '\'' +
+                ", name='" + name + '\'' +
+                ", isSelected=" + isSelected +
+                '}';
+    }
 }
