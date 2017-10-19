@@ -24,7 +24,6 @@ public class PreviewPagerAdapter extends FragmentPagerAdapter {
     public PreviewPagerAdapter(FragmentManager fm, ArrayList<PreviewImageFragment> fragmentList) {
         super(fm);
         this.fm = fm;
-
         arrayList = fragmentList;
     }
 
