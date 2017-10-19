@@ -48,6 +48,7 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
         allList = bundleExtra.getParcelableArrayList(NormalAdpater.EXTRA_ALL_DATA);
         FragmentList  = new ArrayList<>();
         for (Image image : allList) {
+            Log.d(TAG, "onCreate: "+image.position);
             FragmentList.add(PreviewImageFragment.newInstance(image));
         }
         currentPosition = bundleExtra.getInt(NormalAdpater.EXTRA_CURRENT_POSITION);
@@ -58,7 +59,6 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
             click.setText("未选中");
         }
         previewPagerAdapter = new PreviewPagerAdapter(getSupportFragmentManager(),FragmentList);
-        previewPagerAdapter.addAll(allList);
         previewViewpager.setAdapter(previewPagerAdapter);
         previewViewpager.setCurrentItem(currentPosition);
         previewViewpager.setOnPageChangeListener(this);
@@ -113,6 +113,7 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
                 Log.d(TAG, "onViewClicked:    allList.get(mPreviousPos).isSelected ----" + allList.get(mPreviousPos).isSelected);
                 break;
             case R.id.delete:
+                Log.d(TAG, "onViewClicked: mPreviousPos"+mPreviousPos);
                 allList.remove(mPreviousPos);
                 previewPagerAdapter.remove(mPreviousPos);
                 break;

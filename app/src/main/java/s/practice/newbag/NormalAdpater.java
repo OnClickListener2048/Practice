@@ -18,7 +18,6 @@ import s.practice.R;
 import s.practice.imageselect.Image;
 
 /**
- *
  * @author dagou
  * @date 2017/9/29
  */
@@ -79,7 +78,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
                     if (onImageSelectListener != null) {
                         onImageSelectListener.onImageSelect(image);
                     }
-                    Log.d(TAG, "onClick:image.isSelected"+image.isSelected);
+                    Log.d(TAG, "onClick:image.isSelected" + image.isSelected);
                 } else {
                     view.setSelected(true);
                     image.isSelected = true;
@@ -87,7 +86,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
                     if (onImageSelectListener != null) {
                         onImageSelectListener.onImageSelect(image);
                     }
-                    Log.d(TAG, "onClick: image.isSelected"+image.isSelected);
+                    Log.d(TAG, "onClick: image.isSelected" + image.isSelected);
                 }
             }
         });
@@ -126,7 +125,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: "+arrayList.size());
+        Log.d(TAG, "getItemCount: " + arrayList.size());
         return arrayList.size();
     }
 

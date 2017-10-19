@@ -7,7 +7,7 @@ import android.widget.ImageView;
  * Created by dagou on 2017/10/17.
  */
 
-public class ResizeImageView extends ImageView {
+public class ResizeImageView extends android.support.v7.widget.AppCompatImageView {
 
     public ResizeImageView(Context context) {
         super(context);
