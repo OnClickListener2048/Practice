@@ -1,15 +1,13 @@
 package s.practice.newbag;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -18,11 +16,11 @@ import java.util.ArrayList;
 
 import s.practice.R;
 import s.practice.imageselect.Image;
-import s.practice.imageselect.PreviewActivity;
-import s.practice.imageselect.model;
 
 /**
- * Created by dagou on 2017/9/29.
+ *
+ * @author dagou
+ * @date 2017/9/29
  */
 
 public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
@@ -31,40 +29,45 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
     public static final String EXTRA_CURRENT_POSITION = "current_item_position";
     public static final String EXTRA_BUNDLE = "extra_bundle";
 
-    private ArrayList<model.ResultsBean> arrayList;
+    private ArrayList<Image> arrayList;
     private RequestManager requestManager;
     private int mImageResize;
-    private Context mContext;
     private OnImageSelectListener onImageSelectListener;
-    private ArrayList<Image> allItemList;
+    private OnImageClickListener onImageClickListener;
 
-    public NormalAdpater(ArrayList<model.ResultsBean> objectModels, int imageResize) {
-        this.arrayList = objectModels;
+    public NormalAdpater(ArrayList<Image> images, int imageResize) {
+        this.arrayList = images;
         this.mImageResize = imageResize;
-        allItemList = new ArrayList<>();
     }
 
     @Override
     public NormalAdpater.VH onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        mContext = parent.getContext();
+        Log.d(TAG, "onCreateViewHolder:  public NormalAdpater.VH onCreateViewHolder(ViewGroup parent, int viewType) {");
         requestManager = Glide.with(parent.getContext());
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_item, parent, false);
         return new VH(view);
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    @Override
     public void onBindViewHolder(final NormalAdpater.VH viewHolder, final int position) {
-        model.ResultsBean resultsBean = arrayList.get(position);
-        final Image image = new Image();
-        image.name = resultsBean.get_id();
-        image.path = resultsBean.getUrl();
+        final Image image = arrayList.get(position);
         image.position = position;
-        image.isSelected = false;
-        allItemList.add(image);
-        requestManager.load(resultsBean.getUrl()).asBitmap().placeholder(R.mipmap.ic_launcher).override(mImageResize, mImageResize).thumbnail(0.1f).into(viewHolder.iv_image_item);
-
-
+        if (image.isSelected) {
+            viewHolder.radioButton.setText("已选中");
+        } else {
+            viewHolder.radioButton.setText("未选中");
+        }
+        requestManager.load(image.path).asBitmap().placeholder(R.mipmap.ic_launcher).override(mImageResize, mImageResize).thumbnail(0.1f).into(viewHolder.iv_image_item);
         viewHolder.radioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,20 +75,19 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
                 if (view.isSelected()) {
                     view.setSelected(false);
                     image.isSelected = false;
-                    viewHolder.radioButton.toggle();
-                    Toast.makeText(mContext, "   image.isSelected position:" + position + " image.isSelected" + image.isSelected, Toast.LENGTH_SHORT).show();
+                    viewHolder.radioButton.setText("未选中");
                     if (onImageSelectListener != null) {
                         onImageSelectListener.onImageSelect(image);
                     }
-
+                    Log.d(TAG, "onClick:image.isSelected"+image.isSelected);
                 } else {
                     view.setSelected(true);
                     image.isSelected = true;
-                    Toast.makeText(mContext, "   image.isSelected position:" + position + " image.isSelected" + image.isSelected, Toast.LENGTH_SHORT).show();
-                    viewHolder.radioButton.toggle();
+                    viewHolder.radioButton.setText("已选中");
                     if (onImageSelectListener != null) {
                         onImageSelectListener.onImageSelect(image);
                     }
+                    Log.d(TAG, "onClick: image.isSelected"+image.isSelected);
                 }
             }
         });
@@ -93,15 +95,23 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
         viewHolder.iv_image_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, PreviewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList(EXTRA_ALL_DATA, allItemList);
-                bundle.putInt(EXTRA_CURRENT_POSITION, image.position);
-                intent.putExtra(EXTRA_BUNDLE, bundle);
-                mContext.startActivity(intent);
+                onImageClickListener.onImageClick(arrayList, image.position);
             }
         });
 
+    }
+
+    public void refresh(ArrayList<Image> allItemList) {
+        arrayList = allItemList;
+        notifyDataSetChanged();
+    }
+
+    public interface OnImageClickListener {
+        void onImageClick(ArrayList<Image> allItemList, int position);
+    }
+
+    public void setOnImageClickListener(OnImageClickListener onImageClickListener) {
+        this.onImageClickListener = onImageClickListener;
     }
 
 
@@ -116,6 +126,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount: "+arrayList.size());
         return arrayList.size();
     }
 
@@ -123,7 +134,7 @@ public class NormalAdpater extends RecyclerView.Adapter<NormalAdpater.VH> {
 
 
         private final ImageView iv_image_item;
-        private final RadioButton radioButton;
+        private final TextView radioButton;
 
         public VH(View itemView) {
             super(itemView);

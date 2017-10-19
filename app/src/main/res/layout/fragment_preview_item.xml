@@ -10,6 +10,7 @@
         android:layout_height="match_parent" />
 
     <RadioButton
+        android:visibility="gone"
         android:id="@+id/rb_preview_viewpager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,6 +18,7 @@
         android:layout_margin="10dp" />
 
     <TextView
+        android:visibility="gone"
         android:textColor="@color/white"
         android:id="@+id/tv_preview_viewpager_delete"
         android:layout_width="wrap_content"

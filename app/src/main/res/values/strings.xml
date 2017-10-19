@@ -15,4 +15,7 @@
         completions."
     </string>
     <string name="confirm">确定</string>
+    <string name="back">返回</string>
+    <string name="click">选中</string>
+    <string name="delete">删除</string>
 </resources>

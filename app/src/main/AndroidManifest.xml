@@ -34,7 +34,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".imageselect.PreviewActivity" />
+        <activity android:name=".imageselect.PreviewActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
 </manifest>

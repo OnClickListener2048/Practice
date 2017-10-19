@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <RadioButton
+    <TextView
         android:layout_margin="10dp"
         android:id="@+id/rb"
         android:layout_gravity="top|right"
