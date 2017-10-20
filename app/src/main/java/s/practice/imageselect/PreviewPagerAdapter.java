@@ -34,6 +34,9 @@ public class PreviewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public long getItemId(int position) {
+        if (arrayList.size() == position) {
+            return arrayList.get(arrayList.size() - 1).hashCode();
+        }
         int hashcode = arrayList.get(position).hashCode();
         return hashcode;
     }

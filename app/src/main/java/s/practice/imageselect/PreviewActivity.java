@@ -116,6 +116,15 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
                 Log.d(TAG, "onViewClicked: mPreviousPos"+mPreviousPos);
                 allList.remove(mPreviousPos);
                 previewPagerAdapter.remove(mPreviousPos);
+                if (allList.size() == 0 && previewPagerAdapter.arrayList.size() == 0) {
+                    Intent intent2 = new Intent();
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putParcelableArrayList(NormalAdpater.EXTRA_ALL_DATA, allList);
+                    intent2.putExtra(NormalAdpater.EXTRA_BUNDLE, bundle2);
+                    setResult(MyReceiptActivity.RESULT_CODE_BACK, intent2);
+                    finish();
+                }
+
                 break;
             default:
                 break;

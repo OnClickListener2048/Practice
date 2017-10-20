@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s.practice.imageselect.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="拍照"
+        android:textSize="24sp" />
+
+</s.practice.imageselect.SquareFrameLayout>
