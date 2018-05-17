@@ -29,8 +29,8 @@ import s.practice.newbag.NormalAdpater;
  * @date 2017/10/17
  */
 
-public class MyReceiptActivity extends AppCompatActivity implements NormalAdpater.OnImageSelectListener, NormalAdpater.OnImageClickListener {
-    private static final String TAG = "MyReceiptActivity";
+public class ReceiptActivityToken extends AppCompatActivity implements NormalAdpater.OnImageSelectListener, NormalAdpater.OnImageClickListener {
+    private static final String TAG = "ReceiptActivityToken";
 
     public static final int REQUEST_CODE = 1000;
     //    public static final int RESULT_CODE_OK = 2000;
@@ -123,7 +123,6 @@ public class MyReceiptActivity extends AppCompatActivity implements NormalAdpate
                 arrayList.add(image);
             } else {
                 if (arrayList.contains(image)) {
-
                     arrayList.remove(image);
                     Log.d(TAG, "onImageSelect: remove");
                 }

@@ -97,7 +97,7 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList(NormalAdpater.EXTRA_ALL_DATA, allList);
                 intent.putExtra(NormalAdpater.EXTRA_BUNDLE, bundle);
-                setResult(MyReceiptActivity.RESULT_CODE_BACK, intent);
+                setResult(ReceiptActivityToken.RESULT_CODE_BACK, intent);
                 Log.d(TAG, "onViewClicked: allList.get(mPreviousPos).isSelected"+allList.get(mPreviousPos).isSelected);
                 finish();
                 break;
@@ -121,7 +121,7 @@ public class PreviewActivity extends AppCompatActivity implements ViewPager.OnPa
                     Bundle bundle2 = new Bundle();
                     bundle2.putParcelableArrayList(NormalAdpater.EXTRA_ALL_DATA, allList);
                     intent2.putExtra(NormalAdpater.EXTRA_BUNDLE, bundle2);
-                    setResult(MyReceiptActivity.RESULT_CODE_BACK, intent2);
+                    setResult(ReceiptActivityToken.RESULT_CODE_BACK, intent2);
                     finish();
                 }
 

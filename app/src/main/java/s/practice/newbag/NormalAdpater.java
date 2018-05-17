@@ -166,8 +166,8 @@ public class NormalAdpater extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public VH(View itemView) {
             super(itemView);
-            iv_image_item = itemView.findViewById(R.id.iv_image_item);
-            radioButton = itemView.findViewById(R.id.rb);
+            iv_image_item = (ImageView) itemView.findViewById(R.id.iv_image_item);
+            radioButton = (TextView) itemView.findViewById(R.id.rb);
         }
     }
 

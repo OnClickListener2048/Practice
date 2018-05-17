@@ -18,12 +18,10 @@ import java.util.ArrayList;
 
 public class PreviewPagerAdapter extends FragmentPagerAdapter {
     private static final String TAG = "PreviewPagerAdapter";
-    private final FragmentManager fm;
     ArrayList<PreviewImageFragment> arrayList;
 
     public PreviewPagerAdapter(FragmentManager fm, ArrayList<PreviewImageFragment> fragmentList) {
         super(fm);
-        this.fm = fm;
         arrayList = fragmentList;
     }
 

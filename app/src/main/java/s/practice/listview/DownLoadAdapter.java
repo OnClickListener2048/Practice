@@ -50,8 +50,8 @@ public class DownLoadAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.download_item, null);
             vh = new VH();
-            vh.btn = view.findViewById(R.id.btn);
-            vh.numberProgressBar = view.findViewById(R.id.npb);
+            vh.btn = (Button) view.findViewById(R.id.btn);
+            vh.numberProgressBar = (NumberProgressBar) view.findViewById(R.id.npb);
             view.setTag(vh);
         } else vh = (VH) view.getTag();
         vh.btn.setOnClickListener(new View.OnClickListener() {
